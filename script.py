@@ -34,7 +34,8 @@ def main():
 	for submission in subreddit.stream.submissions():
 		if submission.link_flair_text == 'Hiring':
 			message = create_bot_message(submission)
-			telegram_bot_sendtext(message)		
+			telegram_bot_sendtext(message)	
+			print("There has been a new post!")	
 
 if __name__ == "__main__":
     main()
