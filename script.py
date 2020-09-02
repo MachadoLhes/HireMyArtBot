@@ -9,13 +9,13 @@ reddit = praw.Reddit(client_id = os.environ['REDDIT_CLIENT_ID'],
 
 translator = Translator()
 
-subreddit = reddit.subreddit('hungryartists+artcommissions')
+subreddit = reddit.subreddit('hungryartists+artcommissions+commissions')
 
 def create_bot_message(submission):
-	tittle_pt = translator.translate(submission.title, dest='pt', src='en')
+	title_pt = translator.translate(submission.title, dest='pt', src='en')
 
 	message = ""	
-	message += tittle_pt.text + '\n'
+	message += title_pt.text + '\n'
 	message += submission.url + '\n'
 
 	return message
@@ -32,11 +32,11 @@ def telegram_bot_sendtext(bot_message):
 
 def main():
 	for submission in subreddit.stream.submissions():
-		flair = submission.link_flair_text
-		if flair == 'Hiring' or flair == '[Hiring]' :
+		title = submission.title.lower()
+		if 'hiring' in title:
 			message = create_bot_message(submission)
 			telegram_bot_sendtext(message)	
-			print("There has been a new post!")	
+			print("There has been a new post! > {}".format(title))	
 
 if __name__ == "__main__":
     main()
