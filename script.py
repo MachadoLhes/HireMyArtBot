@@ -16,7 +16,7 @@ def filter_title(title):
 
 def create_bot_message(submission):
 	title = filter_title(submission.title)
-	title_pt = translator.translate(submission.title, dest='pt', src='en')
+	title_pt = translator.translate(title, dest='pt', src='en')
 
 	message = ""	
 	message += title_pt.text + '\n'
