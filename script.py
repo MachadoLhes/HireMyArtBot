@@ -11,7 +11,11 @@ translator = Translator()
 
 subreddit = reddit.subreddit('hungryartists+artcommissions+commissions')
 
+def filter_title(title):
+	return title.replace('&','\&')
+
 def create_bot_message(submission):
+	title = filter_title(submission.title)
 	title_pt = translator.translate(submission.title, dest='pt', src='en')
 
 	message = ""	
@@ -36,6 +40,7 @@ def main():
 		if 'hiring' in title:
 			message = create_bot_message(submission)
 			telegram_bot_sendtext(message)	
+			# print(message)
 			print("There has been a new post! > {}".format(title))	
 
 if __name__ == "__main__":
