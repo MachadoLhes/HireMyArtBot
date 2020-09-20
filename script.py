@@ -12,7 +12,7 @@ translator = Translator()
 subreddit = reddit.subreddit('hungryartists+artcommissions+commissions')
 
 def filter_title(title):
-	return title.replace('&','\&')
+	return title.replace('&','n')
 
 def create_bot_message(submission):
 	title = filter_title(submission.title)
