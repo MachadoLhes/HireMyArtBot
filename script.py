@@ -20,7 +20,7 @@ def create_bot_message(submission):
 
 	message = ""	
 	message += title_pt.text + '\n'
-	message += submission.url + '\n'
+	message += 'https://reddit.com' + submission.permalink + '\n'
 
 	return message
 
