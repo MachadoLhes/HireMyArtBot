@@ -43,8 +43,8 @@ def main():
 			flair = ''
 		if 'hiring' in title or 'paid request' in flair:
 			message = create_bot_message(submission)
-			# telegram_bot_sendtext(message)	
-			print(message)
+			telegram_bot_sendtext(message)	
+			# print(message)
 			print("There has been a new post! > {}".format(title))	
 
 if __name__ == "__main__":
