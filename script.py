@@ -24,7 +24,7 @@ def create_bot_message(submission):
 
 	return message
 
-def telegram_bot_sendtext(bot_message):
+def telegram_bot_sendtext(bot_message,title):
     
     bot_token = os.environ['TELEGRAM_BOT_TOKEN']
     bot_chatID = '@hiremyartchannel'
@@ -45,7 +45,7 @@ def main():
 			flair = ''
 		if 'hiring' in title or 'paid request' in flair:
 			message = create_bot_message(submission)
-			telegram_bot_sendtext(message)	
+			telegram_bot_sendtext(message,title)	
 			# print(message)
 				
 
