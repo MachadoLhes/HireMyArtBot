@@ -32,7 +32,7 @@ def telegram_bot_sendtext(bot_message):
 
     response = requests.get(send_text)
 
-	print("There has been a new post! > {}".format(title))
+    print("There has been a new post! > {}".format(title))
 
     return response.json()
 
