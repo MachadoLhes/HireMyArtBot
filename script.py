@@ -32,6 +32,8 @@ def telegram_bot_sendtext(bot_message):
 
     response = requests.get(send_text)
 
+	print("There has been a new post! > {}".format(title))
+
     return response.json()
 
 def main():
@@ -45,7 +47,7 @@ def main():
 			message = create_bot_message(submission)
 			telegram_bot_sendtext(message)	
 			# print(message)
-			print("There has been a new post! > {}".format(title))	
+				
 
 if __name__ == "__main__":
     main()
