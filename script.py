@@ -24,17 +24,14 @@ def create_bot_message(submission):
 
 	return message
 
-def telegram_bot_sendtext(bot_message,title):
-    
-    bot_token = os.environ['TELEGRAM_BOT_TOKEN']
-    bot_chatID = '@hiremyartchannel'
-    send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+def telegram_bot_sendtext(bot_message):    
+	bot_token = os.environ['TELEGRAM_BOT_TOKEN']
+	bot_chatID = '@hiremyartchannel'
+	send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=html&text=' + bot_message
 
-    response = requests.get(send_text)
+	response = requests.get(send_text)
 
-    print("There has been a new post! > {}".format(title))
-
-    return response.json()
+	return response.json()
 
 def main():
 	for submission in subreddit.stream.submissions():
@@ -45,7 +42,8 @@ def main():
 			flair = ''
 		if 'hiring' in title or 'paid request' in flair:
 			message = create_bot_message(submission)
-			telegram_bot_sendtext(message,title)	
+			telegram_bot_sendtext(message)	
+			print("There has been a new post! > {}".format(title))
 			# print(message)
 				
 
